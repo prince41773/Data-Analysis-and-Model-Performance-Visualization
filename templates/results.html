@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #343a40;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .card {
+            margin: 20px 0;
+            border: none;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #0d6efd;
+            color: white;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+        img {
+            max-height: 350px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .btn-success {
+            background-color: #198754;
+            border: none;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+        }
+        .btn-success:hover {
+            background-color: #157347;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <!-- Page Header -->
+        <h1 class="mb-5">Analysis Results</h1>
+
+        <!-- Data Summary Section -->
+        <div class="card">
+            <div class="card-header">Data Summary</div>
+            <div class="card-body">
+                {% if summary %}
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Statistics</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for feature, stats in summary.items() %}
+                                <tr>
+                                    <td>{{ feature }}</td>
+                                    <td>
+                                        <ul>
+                                            {% for stat, value in stats.items() %}
+                                                <li><strong>{{ stat }}:</strong> {{ value }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>No summary available.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- EDA Visualizations Section -->
+        <div class="card">
+            <div class="card-header">Exploratory Data Analysis (EDA)</div>
+            <div class="card-body">
+                {% if eda_plots %}
+                    <div class="row">
+                        {% for plot in eda_plots %}
+                            <div class="col-md-6 mb-4">
+                                <img src="{{ plot }}" alt="EDA Plot" class="img-fluid">
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>No EDA visualizations available for this dataset.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Correlation Heatmap Section -->
+        <div class="card">
+            <div class="card-header">Correlation Heatmap</div>
+            <div class="card-body text-center">
+                {% if heatmap %}
+                    <img src="{{ heatmap }}" alt="Correlation Heatmap" class="img-fluid">
+                {% else %}
+                    <p>Heatmap generation failed or is not applicable to this dataset.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Model Results Section -->
+        <div class="card">
+            <div class="card-header">Model Results</div>
+            <div class="card-body">
+                {% if model_results %}
+                    <ul>
+                        {% for model, metrics in model_results.items() %}
+                            <li><strong>{{ model }}</strong></li>
+                            <ul>
+                                {% for metric, score in metrics.items() %}
+                                    <li>{{ metric }}: {{ score }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No model results available.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Confusion Matrices Section -->
+        <div class="card">
+            <div class="card-header">Confusion Matrices</div>
+            <div class="card-body">
+                {% if confusion_matrices %}
+                    <div class="row">
+                        {% for model, cm_path in confusion_matrices.items() %}
+                            <div class="col-md-6 text-center mb-4">
+                                <h5>{{ model }}</h5>
+                                <img src="{{ cm_path }}" alt="Confusion Matrix for {{ model }}" class="img-fluid">
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>No confusion matrices available.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Model Comparison Chart -->
+        <div class="card">
+            <div class="card-header">Model Comparison Chart</div>
+            <div class="card-body text-center">
+                {% if comparison_chart %}
+                    <img src="{{ comparison_chart }}" alt="Model Comparison Chart" class="img-fluid">
+                {% else %}
+                    <p>Comparison chart generation failed or is not applicable to this dataset.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Report Download Section -->
+        <div class="text-center my-5">
+            <h2>Download Report</h2>
+            {% if report_path %}
+                <a href="{{ url_for('download', filename=report_path) }}" class="btn btn-success">Download PDF Report</a>
+            {% else %}
+                <p>Report generation failed.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Generated by Your Data Analysis System | Powered by Flask</p>
+    </footer>
+</body>
+</html>
