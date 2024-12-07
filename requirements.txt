@@ -1,0 +1,6 @@
+Flask==2.2.2
+Pandas==1.5.3
+Matplotlib==3.7.0
+Seaborn==0.12.2
+Scikit-learn==1.2.0
+FPDF==1.7.2
