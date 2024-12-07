@@ -58,8 +58,7 @@ To set up this project locally, follow the steps below:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/data-analysis-visualization.git
-   cd data-analysis-visualization
+   git clone https://github.com/prince41773/Data-Analysis-and-Model-Performance-Visualization.git
    ```
 2. Install the required dependencies:
    ```bash
