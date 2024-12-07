@@ -16,32 +16,33 @@ This repository showcases a comprehensive data analysis and machine learning mod
 ### 1. **Dataset Upload Page**
 The landing page where users can upload their CSV dataset.
 
-![Dataset Upload](static/images/upload_page.png)
+![Dataset Upload](upload_page.png)
 
 ### 2. **Data Summary Section**
 Displays an overview of key statistics for the uploaded dataset.
 
-![Data Summary](static/images/data_summary.png)
+![Data Summary](data_summary.png)
 
 ### 3. **Exploratory Data Analysis (EDA)**
 Visualizes the dataset's distribution and relationships between features using histograms, boxplots, and correlation heatmaps.
 
-![EDA](static/images/eda.png)
+![EDA](eda.png)
+![EDA](eda2.png)
 
 ### 4. **Model Performance Evaluation**
 Shows confusion matrices and performance metrics for various models.
 
-![Model Performance](static/images/model_performance.png)
+![Model Performance](model_performance.png)
 
 ### 5. **Model Comparison Chart**
 Compares the performance of different models side by side.
 
-![Model Comparison](static/images/model_comparison.png)
+![Model Comparison](model_comparison.png)
 
 ### 6. **Download Report**
 Download a comprehensive PDF report with all analysis and visualizations.
 
-![Download Report](static/images/download_report.png)
+![Download Report](download_report.png)
 
 ## Installation
 
